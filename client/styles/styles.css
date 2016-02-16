@@ -1,0 +1,14 @@
+.band-image{
+    width: 20%;
+    height: 20%;
+    border-radius: 50%;
+}
+
+
+.input-group{
+  margin: 0 20%;
+}
+
+section {
+  position: relative;
+}
