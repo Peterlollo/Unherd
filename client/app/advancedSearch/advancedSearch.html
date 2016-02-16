@@ -18,7 +18,7 @@
   <div class="form-group">
     <label for="obscurity" class="col-sm-2 control-label">Obscurity</label>
     <div class="col-sm-10">
-      <input ng-keypress="submitOnEnter($event)" type="text" ng-model="genre" class="form-control" id="obscurity" placeholder="Input a number from 1 to 10, with 1 being very unknown, and 10 being famous">
+      <input ng-keypress="submitOnEnter($event)" type="text" ng-model="obscurity" class="form-control" id="obscurity" placeholder="Input a number from 1 to 10, with 1 being very unknown, and 10 being famous">
     </div>
   </div>
   <div class="form-group">
@@ -36,4 +36,20 @@
        </div>
      </div>
 </form>
+
+<section data-spy="scroll" data-target="#navbar-example">
+      <div class="row bands-view" ng-repeat="artist in artists">
+        <hr height="5px">
+         <img class="col-md-3 band-image" ng-src="{{artist.image.url}}">
+        <div class="col-md-3 lead">{{artist.name}}</div>
+        <div class="col-md-3 lead">{{artist.genres.join(', ')}}</div>
+        <div class="col-md-3"><a href={{artist.tix}}>{{ artist.upcoming }}</a></div>
+        </li>
+        <hr height="5px">
+    </div>>
+
+
+</section>
+
+
 </div>

@@ -29,11 +29,9 @@ angular.module('bands.home', [])
             if(!result || result.length === 0) {
               return false;
             } else {
-             //don't forget about this funky CALL
               [].forEach.call(result, function(show) {
                   if(show.venue.city) {
                     if(show.venue.city.toLowerCase() === $scope.area.toLowerCase()) {
-                      // console.log('I can not believe we got a match!',$scope.artists[i]);
                       $scope.artists[i].upcoming = 'Upcoming show at '+ show.venue.name + ' on ' + show.datetime + '. \n Get tickets.';
                       $scope.artists[i].tix = show.url;
                     }
