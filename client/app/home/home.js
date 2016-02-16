@@ -34,7 +34,8 @@ angular.module('bands.home', [])
                   if(show.venue.city) {
                     if(show.venue.city.toLowerCase() === $scope.area.toLowerCase()) {
                       // console.log('I can not believe we got a match!',$scope.artists[i]);
-                      $scope.artists[i].upcoming = 'Upcoming show at '+ show.venue.name + ' on ' + show.datetime + '. Scope tickets here: ' + show.url;
+                      $scope.artists[i].upcoming = 'Upcoming show at '+ show.venue.name + ' on ' + show.datetime + '. \n Get tickets.';
+                      $scope.artists[i].tix = show.url;
                     }
                   }
                 });

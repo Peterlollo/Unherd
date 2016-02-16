@@ -31,7 +31,7 @@
          <img class="col-md-3 band-image" ng-src="{{artist.image.url}}">
         <div class="col-md-3 lead">{{artist.name}}</div>
         <div class="col-md-3 lead">{{artist.genres.join(', ')}}</div>
-        <div class="col-md-3">{{artist.upcoming}}</div>
+        <div class="col-md-3"><a href={{artist.tix}}>{{ artist.upcoming }}</a></div>
         </li>
         <hr height="5px">
     </div>>
