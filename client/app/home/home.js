@@ -1,5 +1,5 @@
 angular.module('bands.home', [])
-  .controller('HomeController', function($scope, $location, $http, Utils){
+  .controller('HomeController', function($scope, $location, $http, $q, Utils){
 
     $scope.upcomingShows = [];
     $scope.artists = [];
@@ -22,23 +22,26 @@ angular.module('bands.home', [])
     if(!artists || artists.length === 0) {
       return;
     }
+    
      artists.forEach(function(artist, i){
       return $.getJSON("http://api.bandsintown.com/artists/mbid_" +artist.mbid + "/events.json?callback=?&app_id=ramesh", function(result) {
-         if(!result || result.length === 0) {
-           return false;
-         } else {
-          //don't forget about this funky CALL
-           [].forEach.call(result, function(show) {
-               if(show.venue.city) {
-                 if(show.venue.city.toLowerCase() === $scope.area.toLowerCase()) {
-                   console.log('I can not believe we got a match!',$scope.artists[i]);
-                   $scope.artists[i].upcoming = 'Upcoming show at '+ show.venue.name + ' on ' + show.datetime + '. Scope tickets here: ' + show.url;
-                 }
+        $scope.$apply(function(){
+            if(!result || result.length === 0) {
+              return false;
+            } else {
+             //don't forget about this funky CALL
+              [].forEach.call(result, function(show) {
+                  if(show.venue.city) {
+                    if(show.venue.city.toLowerCase() === $scope.area.toLowerCase()) {
+                      // console.log('I can not believe we got a match!',$scope.artists[i]);
+                      $scope.artists[i].upcoming = 'Upcoming show at '+ show.venue.name + ' on ' + show.datetime + '. Scope tickets here: ' + show.url;
+                    }
+                  }
+                });
                }
              });
-            }
           });
-       });
+        });
      };
 
 
