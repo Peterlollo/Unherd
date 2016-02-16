@@ -1,0 +1,34 @@
+<div class='container'>
+    <h2 class="row text-center">Find Local Bands</h2>
+
+    <div class="input-group">
+      <input ng-keypress="submitOnEnter($event)" ng-model="area" type="text" class="form-control" placeholder="Which city are you in?" aria-describedby="basic-addon2">
+      <span ng-click="searchArea()" class="btn btn-primary input-group-addon" id="basic-addon2">Find Bands</span>
+    </div>
+    <div ng-click="bandsInTown('Santana')"> bands in town working? </div>
+
+    <button ng-click="spotify('Santana')"> What about spotify </button>
+
+    <button class="btn btn-primary">Advanced Search</button>
+
+
+
+
+<!-- <div id="navbar-example">
+    <ul class="nav nav-tabs" role="tablist">
+    <li>Nav item?</li>
+    </ul>
+  </div> -->
+
+<section data-spy="scroll" data-target="#navbar-example">
+      <div class="row bands-view" ng-repeat="artist in artists">
+         <img class="col-md-3 band-image" ng-src="{{artist.image.url}}">
+        <div class="col-md-3 lead">{{artist.name}}</div>
+        <div class="col-md-3 lead">{{artist.genres.join(', ')}}</div>
+        <div class="col-md-3">{{artist.upcoming}}</div>
+        </li>
+    </div>>
+
+
+</section>
+</div>
