@@ -25,7 +25,7 @@
     <div class="col-sm-offset-2 col-sm-10">
       <div class="checkbox">
         <label>
-        <input type="checkbox"> Only show bands with upcoming shows?
+        <input ng-model="checkbox" type="checkbox"> Only show bands with upcoming shows?
         </label>
       </div>
     </div>
@@ -36,6 +36,8 @@
        </div>
      </div>
 </form>
+
+<button ng-click="listAllGenres()"class='btn btn-primary'>See all possible genres in yer console</button>
 
 <section data-spy="scroll" data-target="#navbar-example">
       <div class="row bands-view" ng-repeat="artist in artists">
