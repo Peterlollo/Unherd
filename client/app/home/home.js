@@ -1,5 +1,5 @@
 angular.module('bands.home', [])
-  .controller('HomeController', function($scope, $location, $http){
+  .controller('HomeController', function(Utils, $scope, $location, $http){
 
    var init = function() {console.log('home controller up and going');};
    
@@ -57,10 +57,14 @@ angular.module('bands.home', [])
 
 
    $scope.searchArea = function() {
+    $scope.artists = [];
+    Utils.startSpinner();
+    
     return  $http({
       method: 'GET',
       url: 'http://developer.echonest.com/api/v4/artist/search?max_familiarity=1&api_key=JDJI14KNR66G2VOKO&format=json&results=50&artist_location='+$scope.area.toLowerCase()+'&bucket=artist_location&bucket=images&bucket=genre&artist_end_year_after=present'
     }).then(function(res) {
+      Utils.stopSpinner();
       var artistArray = res.data.response.artists;
       artistArray.forEach(function(band){
         var artist = {};
