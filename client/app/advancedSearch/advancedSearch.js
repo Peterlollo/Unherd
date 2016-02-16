@@ -28,6 +28,8 @@ angular.module('bands.advancedSearch', [])
 
     $scope.bandsInTown = function(artists){
     if(!artists || artists.length === 0) {
+      Utils.stopSpinner();
+      $('h2').append('<div class="error">No Artists. Try a less stringent search.</div>');
       return;
     }
     var count = artists.length;
@@ -49,26 +51,34 @@ angular.module('bands.advancedSearch', [])
                 });
                }
              });
-           if(count <= 1 && $scope.checkbox) {
-            Utils.stopSpinner();
-            $scope.artists.forEach(function(artist, j){
-              if(artist.upcoming) {
-                $scope.artists2.push(artist);
+           if(count === 1) {
+              Utils.stopSpinner();
+              if($scope.checkbox) {
+              $scope.artists.forEach(function(artist, j){
+                if(artist.upcoming) {
+                  $scope.artists2.push(artist);
+                }
+              });
+              $scope.artists = [];
+              $scope.artists2.forEach(function(art){
+                $scope.artists.push(art);
+              });
+              $scope.artists2 = [];
+              if($scope.artists.length === 0) {
+                $('h2').append('<div class="error">No Upcoming Shows. Try a less stringent search.</div>');
               }
-            });
-            $scope.artists = [];
-            $scope.artists2.forEach(function(art){
-              $scope.artists.push(art);
-            });
-            $scope.artists2 = [];
+             }
            }
+        }).fail(function(){
+          count--;
         });
       });
     };
 
 $scope.queryStr = 'http://developer.echonest.com/api/v4/artist/search?max_familiarity=';
       $scope.formatQuery = function(){
-      if($scope.obscurity && typeof parseInt($scope.obscurity) === 'number') {
+      if($scope.obscurity && parseInt($scope.obscurity) < 11 && parseInt($scope.obscurity) >= 1) {
+        console.log('obscurity avail!');
         $scope.queryStr+=(parseInt($scope.obscurity)/10).toFixed(2);
       } else {
         $scope.queryStr+='1';
@@ -79,6 +89,13 @@ $scope.queryStr = 'http://developer.echonest.com/api/v4/artist/search?max_famili
 
 // 'http://developer.echonest.com/api/v4/artist/search?max_familiarity=1&api_key=JDJI14KNR66G2VOKO&format=json&results=50&artist_location='+$scope.area.toLowerCase()+'&bucket=artist_location&bucket=images&bucket=genre&bucket=id:musicbrainz&artist_end_year_after=present&genre=funk+rock+rap+rock'
       $scope.searchArea = function() {
+        $('h2.error').remove();
+        $('div.error').remove();
+        if(!$scope.area){
+          $('form').prepend($('<h2 class="error">Please add a city</h2>'));
+          return;
+        }
+        Utils.stopSpinner();
         $scope.queryStr = 'http://developer.echonest.com/api/v4/artist/search?max_familiarity=';
          $scope.artists = [];
          Utils.startSpinner();

@@ -12,3 +12,7 @@
 section {
   position: relative;
 }
+
+.error {
+  color: red;
+}
