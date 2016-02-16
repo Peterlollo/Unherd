@@ -1,0 +1,39 @@
+<div id='container'>
+
+<h2 class="row text-center">Find Local Bands</h2>
+
+<form name="advancedSearchForm" class="form-horizontal" novalidate>
+  <div class="form-group">
+    <label for="area" class="col-sm-2 control-label">Area</label>
+    <div class="col-sm-10">
+      <input name="area" ng-keypress="submitOnEnter($event)" ng-model="area" type="text" class="form-control" id="area" placeholder="Enter a city" required ng-
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="genre" class="col-sm-2 control-label">Genre</label>
+    <div class="col-sm-10">
+      <input ng-keypress="submitOnEnter($event)" ng-model="genre" type="text" class="form-control" id="genre" placeholder="Rock, pop, surf, etc.">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="obscurity" class="col-sm-2 control-label">Obscurity</label>
+    <div class="col-sm-10">
+      <input ng-keypress="submitOnEnter($event)" type="text" ng-model="genre" class="form-control" id="obscurity" placeholder="Input a number from 1 to 10, with 1 being very unknown, and 10 being famous">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label>
+        <input type="checkbox"> Only show bands with upcoming shows?
+        </label>
+      </div>
+    </div>
+    </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button ng-click="searchArea()" type="submit" class="btn btn-default">Find Bands</button>
+       </div>
+     </div>
+</form>
+</div>

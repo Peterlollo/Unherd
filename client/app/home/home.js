@@ -5,16 +5,20 @@ angular.module('bands.home', [])
    
    init();
 
-   $scope.spotify = function(artist) {
-     return $http({
-      method: 'GET'
-      url: 
-     });
-   }
+   // $scope.spotify = function(artist) {
+   //   return $http({
+   //    method: 'GET'
+   //    url: 
+   //   });
+   // }
+
+
+
+   var advancedSearchForm = $('');
 
    $scope.advancedSearch = function(){
-    
-   }
+    $location.path('/advancedSearch');
+   };
 
    $scope.submitOnEnter = function($event) {
     var keyCode = $event.which || $event.keyCode;
