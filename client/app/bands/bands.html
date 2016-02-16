@@ -1,0 +1,19 @@
+<div id='container'>
+    <h2 class="text-center">Bands</h2>     
+
+     
+    <input required placheholder='Where?' ng-model="area">
+    <p></p>
+    <button class="btn btn-primary btn-lg active" ng-click="searchArea()">Find Bands</button>
+
+
+    <ul>
+      <li class="row" ng-repeat="artist in artists">
+         <img class="col-md-4 band-image" ng-src="{{artist.image.url}}">
+        <div class="col-md-4 lead">{{artist.name}}</div>
+        <div class="col-md-4 lead">{{artist.genres.join(', ')}}</div>
+        </li>
+    </ul>
+
+
+</div>
