@@ -31,27 +31,23 @@ angular.module('bands.home', [])
 
    $scope.upcomingShows = [];
 
-   $scope.bandsInTown = function(artist){
-    $.getJSON("http://api.bandsintown.com/artists/" +artist + "/events.json?callback=?&app_id=ramesh", function(result) {
-      if(!result) { 
-        return false; 
-      }
-      result.forEach(function(show) {
-          if(show.venue.city) {
-            if(show.venue.city.toLowerCase() === $scope.area.toLowerCase()) {
-              console.log('I can not believe we got a match!', show.venue.city);
-              var nextShow = {};
-              nextShow.venue = show.venue.name;
-              nextShow.date = show.datetime;
-              nextShow.tickets = show.url;
-              $scope.upcomingShows.push(nextShow);
-              return true;
+   $scope.bandsInTown = function(artists){
+    artists.forEach(function(artist, i){
+     return $.getJSON("http://api.bandsintown.com/artists/" +artist.name + "/events.json?callback=?&app_id=ramesh", function(result) {
+        if(!result) {
+          return false;
+        }
+        result.forEach(function(show) {
+            if(show.venue.city) {
+              if(show.venue.city.toLowerCase() === $scope.area.toLowerCase()) {
+                console.log('I can not believe we got a match!',$scope.artists[i]);
+                $scope.artists[i].upcoming = 'Upcoming show at '+ show.venue.name + ' on ' + show.datetime + '. Scope tickets here: ' + show.url;
+              }
             }
-          }
-
+          });
+        });
       });
-    });
-   };
+    };
 
    $scope.artists = [];
 
@@ -69,10 +65,11 @@ angular.module('bands.home', [])
       artistArray.forEach(function(band){
         var artist = {};
         artist.name = band.name;
-        if($scope.bandsInTown($scope.formatArea(artist.name))){
-          artist.upcoming = $scope.upcomingShows;
-          $scope.upcomingShows = [];
-        }
+        // if($scope.bandsInTown($scope.formatArea(artist.name))){
+        //   artist.upcoming = $scope.upcomingShows.pop();
+        //   console.log('ARTIST');
+        //   console.log('artist obj =', artist);
+        // }
         artist.genres = [];
         band.genres.forEach(function(genreObj) {
           artist.genres.push(genreObj.name);
@@ -87,7 +84,9 @@ angular.module('bands.home', [])
           artist.image = {url: '../../assets/guitar.jpg'};
         }
         $scope.artists.push(artist);
+
       });
+      return $scope.bandsInTown($scope.artists);
       console.log('RESPONSE from the NEST :', res);
     });
   };
