@@ -27,11 +27,13 @@
 
 <section data-spy="scroll" data-target="#navbar-example">
       <div class="row bands-view" ng-repeat="artist in artists">
+        <hr height="5px">
          <img class="col-md-3 band-image" ng-src="{{artist.image.url}}">
         <div class="col-md-3 lead">{{artist.name}}</div>
         <div class="col-md-3 lead">{{artist.genres.join(', ')}}</div>
         <div class="col-md-3">{{artist.upcoming}}</div>
         </li>
+        <hr height="5px">
     </div>>
 
 
