@@ -74,17 +74,9 @@ angular.module('bands.home', [])
            });
            Utils.stopSpinner();
            console.log('RESPONSE from the NEST :', res);
-           //return $scope.bandsInTown($scope.artists);
-           
+           return $scope.bandsInTown($scope.artists);
          });
        };
-
-  //scroll spy?
-// $('section').scrollspy({ target: '#navbar-example' })
-
-// $('[data-spy="scroll"]').each(function () {
-//   var $spy = $(this).scrollspy('refresh')
-// });
 
 
 
