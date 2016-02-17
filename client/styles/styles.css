@@ -1,7 +1,7 @@
 .band-image{
-    width: 20%;
-    height: 20%;
-    border-radius: 50%;
+    width: 10%;
+    height: 10%;
+    /*border-radius: 50%;*/
 }
 
 
@@ -10,9 +10,65 @@
 }
 
 section {
-  position: relative;
+  /*position: relative;*/
 }
 
 .error {
   color: red;
+}
+
+/*body {
+  background-image: linear-gradient(90deg, #EEEEEE, #FFFFFF);
+  height: 100%;
+}*/
+
+.header {
+  background-color: black;
+}
+
+.headerText {
+  color: white;
+  margin-left: 2%;
+  font-size: 80px;
+}
+
+h2.row {
+  font-family: 'Amatic SC', cursive;
+  font-size: 80px;
+  padding: 60px 0 20px;
+}
+
+input.form-control.advanced {
+  width: 50%;
+  margin: 0 12%;  
+  font-size: 150%; 
+}
+.checkbox {
+   width: 50%;
+  margin: 0 12%;  
+  font-size: 150%; 
+}
+
+input.input-lg {
+  font-size: 150%;
+}
+
+label {
+  font-size: 30px;
+  margin: 0 auto;
+}
+
+label.btn-default:hover{
+  
+}
+button.advanced {
+  width: 50%;
+  margin: 0 12%;  
+  font-size: 150%; 
+}
+section.move{
+  /*position: relative;*/
+  max-height: 1000px;
+  overflow-y: scroll;
+  /*overflow: hidden;*/
 }

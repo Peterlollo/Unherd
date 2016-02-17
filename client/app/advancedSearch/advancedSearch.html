@@ -1,24 +1,27 @@
-<div id='container'>
-
-<h2 class="subtitle row text-center">Find Local Bands</h2>
-
+<div class="stay static">
+  <div class="header row">
+    <h1 ng-click="routeIndex()"class="btn headerText">Unherd</h1>
+  </div>
+  <h2 class="row text-center">Find Local Bands</h2>
+</div>
+<section data-spy="scroll" data-target="div.stay.static" class="move">
 <form name="advancedSearchForm" class="form-horizontal" novalidate>
   <div class="form-group">
     <label for="area" class="col-sm-2 control-label">Area</label>
     <div class="col-sm-10">
-      <input name="area" ng-keypress="submitOnEnter($event)" ng-model="area" type="text" class="form-control" id="area" placeholder="Enter a city" required>
+      <input name="area" ng-keypress="submitOnEnter($event)" ng-model="area" type="text" class="input-lg form-control advanced" id="area" placeholder="Enter a city" required>
     </div>
   </div>
   <div class="form-group">
-    <label for="genre" class="col-sm-2 control-label">Genre</label>
+    <label for="genre" ng-click="listAllGenres()" class="btn-default col-sm-2 control-label">Genre</label>
     <div class="col-sm-10">
-      <input ng-keypress="submitOnEnter($event)" ng-model="genre" type="text" class="form-control" id="genre" placeholder="Rock, pop, surf, etc.">
+      <input ng-keypress="submitOnEnter($event)" ng-model="genre" type="text" class="genre input-lg form-control advanced" id="genre" data-toggle="popover" data-animation="true" data-trigger="focus" title="Click on 'Genre'" data-content="To see a list of all possible genres" placeholder="Rock, pop, surf, etc.">
     </div>
   </div>
   <div class="form-group">
     <label for="obscurity" class="col-sm-2 control-label">Obscurity</label>
     <div class="col-sm-10">
-      <input ng-keypress="submitOnEnter($event)" type="text" ng-model="obscurity" class="form-control" id="obscurity" placeholder="Input a number from 1 to 10, with 1 being very unknown, and 10 being famous">
+      <input ng-keypress="submitOnEnter($event)" type="text" ng-model="obscurity" class="input-lg form-control advanced " id="obscurity" placeholder="A number from 1 to 10, with 1 being quite obscure, 10 being famous">
     </div>
   </div>
   <div class="form-group">
@@ -32,26 +35,27 @@
     </div>
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-          <button ng-click="searchArea()" type="submit" class="btn btn-default">Find Bands</button>
+          <button ng-click="searchArea()" type="submit" class="advanced btn btn-lg btn-primary">Find Bands</button>
        </div>
      </div>
 </form>
 
-<button ng-click="listAllGenres()"class='btn btn-primary'>See all possible genres in yer console</button>
+ <input ng-hide="genreVis" ng-keypress="searchGenres()" ng-model="substring"placeholder="Filter the genres" class="input-lg col-lg-12">
+  <ul class="row bands-view" ng-repeat="genreItem in genreList">
+    <hr height="5px">
+    <li class="col-md-3 lead">{{genreItem}}</li>
+</ul>
 
-<section data-spy="scroll" data-target="#navbar-example">
+
       <div class="row bands-view" ng-repeat="artist in artists">
         <hr height="5px">
-         <img class="col-md-3 band-image" ng-src="{{artist.image.url}}">
+         <img class="col-md-3 img-circle band-image" ng-src="{{artist.image.url}}">
         <div class="col-md-3 lead">{{artist.name}}</div>
         <div class="col-md-3 lead">{{artist.genres.join(', ')}}</div>
         <div class="col-md-3"><a href={{artist.tix}}>{{ artist.upcoming }}</a></div>
         </li>
         <hr height="5px">
-    </div>>
+    </div>
 
 
 </section>
-
-
-</div>

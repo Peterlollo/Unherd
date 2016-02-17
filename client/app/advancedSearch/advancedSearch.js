@@ -1,8 +1,8 @@
 angular.module('bands.advancedSearch', [])
   .controller('AdvancedSearchController', function($scope, Utils, $http) {
-
+$('input.genre').popover({trigger: 'hover'});
     $scope.checkbox;
-
+$('label.btn-default').popover({trigger: 'click'});
     $scope.submitOnEnter = function($event) {
       $('h2.error').remove();
       if($event.which === 13 && !$scope.area) {
@@ -16,9 +16,19 @@ angular.module('bands.advancedSearch', [])
     $scope.upcomingShows = [];
     $scope.artists = [];
     $scope.artists2 = [];
+    $scope.genreList = [];
+    $scope.genreVis = true;
+
+    $scope.routeIndex = function() {
+      Utils.routeIndex();
+    };
 
      $scope.advancedSearch = function(){
       $location.path('/advancedSearch');
+     };
+
+     $scope.searchGenres = function() {
+
      };
 
 
@@ -89,6 +99,8 @@ $scope.queryStr = 'http://developer.echonest.com/api/v4/artist/search?max_famili
 
 // 'http://developer.echonest.com/api/v4/artist/search?max_familiarity=1&api_key=JDJI14KNR66G2VOKO&format=json&results=50&artist_location='+$scope.area.toLowerCase()+'&bucket=artist_location&bucket=images&bucket=genre&bucket=id:musicbrainz&artist_end_year_after=present&genre=funk+rock+rap+rock'
       $scope.searchArea = function() {
+        $scope.genreList = [];
+        $scope.genreVis = true;
         $('h2.error').remove();
         $('div.error').remove();
         if(!$scope.area){
@@ -139,11 +151,16 @@ $scope.queryStr = 'http://developer.echonest.com/api/v4/artist/search?max_famili
        };
 
        $scope.listAllGenres = function() {
+        $scope.genreVis = false;
         return $http({
           method: 'GET',
           url: 'http://developer.echonest.com/api/v4/artist/list_genres?api_key=JDJI14KNR66G2VOKO&format=json'
         }).then(function(data){
           console.log('Genre data', data);
+          data.data.response.genres.forEach(function(obj){
+            $scope.genreList.push(obj.name);
+          });
+
         });
        };
   });

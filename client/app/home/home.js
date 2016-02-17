@@ -67,14 +67,14 @@ angular.module('bands.home', [])
                }
              }
              if(!artist.image) {
-               artist.image = {url: '../../assets/guitar.jpg'};
+               artist.image = {url: '../../assets/record.jpg'};
              }
              $scope.artists.push(artist);
 
            });
            Utils.stopSpinner();
            console.log('RESPONSE from the NEST :', res);
-           return $scope.bandsInTown($scope.artists);
+           //return $scope.bandsInTown($scope.artists);
            
          });
        };

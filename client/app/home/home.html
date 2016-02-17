@@ -1,41 +1,28 @@
-<div class='container'>
-    <h2 class="row text-center">Find Local Bands</h2>
+<div class="stay static">
+  <div class="header row">
+    <h1 ng-click="routeIndex()"class="btn headerText">Unherd</h1>
+  </div>
+  <h2 class="row text-center">Find Local Bands</h2>
 
-    <div class="input-group">
-      <input ng-keypress="submitOnEnter($event)" ng-model="area" type="text" class="form-control" placeholder="Which city are you in?" aria-describedby="basic-addon2">
-      <span ng-click="searchArea()" class="btn btn-primary input-group-addon" id="basic-addon2">Find Bands</span>
-    </div>
-    <div ng-click="bandsInTown('Santana')"> bands in town working? </div>
+  <div class="row input-group">
+    <input ng-keypress="submitOnEnter($event)" ng-model="area" type="text" class="input-lg form-control" placeholder="Which city are you in?" aria-describedby="basic-addon2">
+    <span ng-click="searchArea()" class="btn btn-primary input-group-addon" id="basic-addon2">Find Bands</span>
+  </div>
 
-    <button ng-click="spotify('Santana')"> What about spotify </button>
+  <div class="advanced">
+    <button ng-click="advancedSearch()" class="advanced btn btn-primary">Advanced Search</button>
+  </div>
+</div>
 
-    <div class="advanced">
-      <button ng-click="advancedSearch()" class="advanced btn btn-primary">Advanced Search</button>
-    </div>
-
-   
-
-
-
-
-
-<!-- <div id="navbar-example">
-    <ul class="nav nav-tabs" role="tablist">
-    <li>Nav item?</li>
-    </ul>
-  </div> -->
-
-<section data-spy="scroll" data-target="#navbar-example">
+<section data-spy="scroll" data-target="div.stay.static" class="move">
       <div class="row bands-view" ng-repeat="artist in artists">
         <hr height="5px">
-         <img class="col-md-3 band-image" ng-src="{{artist.image.url}}">
+         <img class="col-md-3 img-circle band-image" ng-src="{{artist.image.url}}">
         <div class="col-md-3 lead">{{artist.name}}</div>
         <div class="col-md-3 lead">{{artist.genres.join(', ')}}</div>
         <div class="col-md-3"><a href={{artist.tix}}>{{ artist.upcoming }}</a></div>
         </li>
         <hr height="5px">
-    </div>>
-
+    </div>
 
 </section>
-</div>
