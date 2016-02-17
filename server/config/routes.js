@@ -6,7 +6,7 @@ module.exports = function(app, express) {
   //fill in server side functionality here
 
 
-  app.get('/users', function(req, res, err) {
+  app.get('/', function(req, res, err) {
     console.log('you tryin to get users? w/this req.body', req.body);
     res.send(200);
   });

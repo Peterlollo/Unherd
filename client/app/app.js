@@ -11,6 +11,9 @@ angular.module('bands', ['bands.home','bands.advancedSearch', 'bands.services', 
       .when('/advancedSearch', {
         templateUrl: 'app/advancedSearch/advancedSearch.html',
         controller: 'AdvancedSearchController'
+      }).when('/', {
+        templateUrl: 'app/home/home.html',
+        controller: 'HomeController'
       });
       //Require and add $httpProvider interceptor here if needed
   }]);
