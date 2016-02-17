@@ -3,9 +3,12 @@
     <h1 ng-click="routeIndex()"class="btn headerText">Unherd</h1>
   </div>
   <h2 class="row text-center">Find Local Bands</h2>
+  <input ng-hide="genreVis" ng-model="search"placeholder="Filter the genres" class="input-lg">
+  <button ng-hide="genreVis" ng-click="routeAdvanced()" class="btn btn-lg btn-primary">Return to search</button>
 </div>
+
 <section data-spy="scroll" data-target="div.stay.static" class="move">
-<form name="advancedSearchForm" class="form-horizontal" novalidate>
+<form ng-hide="!genreVis" name="advancedSearchForm" class="form-horizontal" novalidate>
   <div class="form-group">
     <label for="area" class="col-sm-2 control-label">Area</label>
     <div class="col-sm-10">
@@ -40,10 +43,10 @@
      </div>
 </form>
 
- <input ng-hide="genreVis" ng-keypress="searchGenres()" ng-model="substring"placeholder="Filter the genres" class="input-lg col-lg-12">
-  <ul class="row bands-view" ng-repeat="genreItem in genreList">
+
+  <ul ng-repeat="genreItem in genreList | filter:search">
     <hr height="5px">
-    <li class="col-md-3 lead">{{genreItem}}</li>
+    <li class="lead">{{genreItem}}</li>
 </ul>
 
 

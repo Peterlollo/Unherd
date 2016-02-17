@@ -1,5 +1,5 @@
 angular.module('bands.advancedSearch', [])
-  .controller('AdvancedSearchController', function($scope, Utils, $http) {
+  .controller('AdvancedSearchController', function($scope, Utils, $http, $location) {
 $('input.genre').popover({trigger: 'hover'});
     $scope.checkbox;
 $('label.btn-default').popover({trigger: 'click'});
@@ -23,12 +23,13 @@ $('label.btn-default').popover({trigger: 'click'});
       Utils.routeIndex();
     };
 
+     $scope.routeAdvanced = function() {
+      $scope.genreList = [];
+      $scope.genreVis = true;
+    };
+
      $scope.advancedSearch = function(){
       $location.path('/advancedSearch');
-     };
-
-     $scope.searchGenres = function() {
-
      };
 
 
@@ -83,6 +84,7 @@ $('label.btn-default').popover({trigger: 'click'});
           count--;
         });
       });
+      Utils.stopSpinner();
     };
 
 $scope.queryStr = 'http://developer.echonest.com/api/v4/artist/search?max_familiarity=';
@@ -132,7 +134,7 @@ $scope.queryStr = 'http://developer.echonest.com/api/v4/artist/search?max_famili
                }
              }
              if(!artist.image) {
-               artist.image = {url: '../../assets/guitar.jpg'};
+               artist.image = {url: '../../assets/record.jpg'};
              }
              if($scope.genre){
                if(artist.genres.join().indexOf($scope.genre) > -1) {
