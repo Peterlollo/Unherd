@@ -59,11 +59,16 @@ label {
 }
 
 label.btn-default:hover{
-  
+
 }
 button.advanced {
-  width: 50%;
-  margin: 0 12%;  
+  width: 25%;
+  margin: 2% 38%;  
+  font-size: 150%; 
+}
+button.adv {
+  width: 25%;
+  margin: 2% 25%;  
   font-size: 150%; 
 }
 section.move{
